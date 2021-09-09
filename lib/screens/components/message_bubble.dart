@@ -3,21 +3,23 @@ import 'package:flutter/material.dart';
 import 'package:whatsapp_clone/models/chat_message.dart';
 
 class MessageBubble extends StatelessWidget {
-  const MessageBubble({Key? key, required this.message, this.isMe})
-      : super(key: key);
+  const MessageBubble({Key? key, required this.message}) : super(key: key);
   final ChatMessage message;
-  final bool? isMe;
 
   @override
   Widget build(BuildContext context) {
     return Bubble(
-      margin: const BubbleEdges.only(top: 10, right: 50),
-      alignment: isMe! ? Alignment.topRight : Alignment.topLeft,
-      nip: isMe! ? BubbleNip.rightTop : BubbleNip.leftTop,
+      margin: BubbleEdges.only(
+        top: 10,
+        left: message.isMe == true ? 50 : 0,
+        right: message.isMe == null ? 50 : 0,
+      ),
+      alignment: message.isMe == true ? Alignment.topRight : Alignment.topLeft,
+      nip: message.isMe == true ? BubbleNip.rightTop : BubbleNip.leftTop,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          isMe!
+          message.isMe == true
               ? SizedBox.shrink()
               : Text(
                   message.sender,

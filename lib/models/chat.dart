@@ -7,6 +7,7 @@ class ChatModel {
       {required this.title, required this.subTitle, required this.date});
 }
 
+// needs to associate messages with chat
 const demoChats = [
   ChatModel(
       title: 'MISS CLASS OF 2016 REUNION',

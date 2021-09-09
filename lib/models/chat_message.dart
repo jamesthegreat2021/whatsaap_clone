@@ -5,9 +5,11 @@ class ChatMessage {
   final String sender;
   final String content;
   final String timestamp;
+  final bool? isMe;
 
   const ChatMessage(
-      {required this.type,
+      {this.isMe,
+      required this.type,
       required this.sender,
       required this.content,
       required this.timestamp});
@@ -15,15 +17,17 @@ class ChatMessage {
 
 const demoMessages = [
   ChatMessage(
-      type: MessageType.PlainText,
-      sender: 'NASA man',
-      timestamp: '12:30',
-      content: 't-10s to a liftoff'),
+    type: MessageType.PlainText,
+    sender: 'NASA man',
+    timestamp: '12:30',
+    content: 't-10s to a liftoff',
+  ),
   ChatMessage(
+      sender: 'james',
       type: MessageType.PlainText,
-      sender: 'me', // asda;sdjaisdhln
       timestamp: '12:33',
-      content: 'Are they launching today?'),
+      content: 'Are they launching today?',
+      isMe: true),
   ChatMessage(
       type: MessageType.PlainText,
       sender: 'Shadrack Shine At The Hills',

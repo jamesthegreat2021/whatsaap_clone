@@ -2,9 +2,9 @@ import 'dart:io';
 
 import 'package:emoji_picker_flutter/emoji_picker_flutter.dart';
 import 'package:flutter/material.dart';
-import 'package:whatsapp_clone/screens/components/message.dart';
 import 'package:whatsapp_clone/models/chat.dart';
 import 'package:whatsapp_clone/models/chat_message.dart';
+import 'package:whatsapp_clone/screens/components/message_dash.dart';
 
 class ChatScreen extends StatefulWidget {
   const ChatScreen({Key? key, required this.activeChat}) : super(key: key);
@@ -77,14 +77,10 @@ class _ChatScreenState extends State<ChatScreen> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Expanded(
-              child: ListView.builder(
-                padding: EdgeInsets.only(top: 10, left: 10, right: 10),
-                itemCount: demoMessages.length,
-                itemBuilder: (context, index) {
-                  return Message(
-                    message: demoMessages[index],
-                  );
-                },
+              child: ListView(
+                children: [
+                  MessageDash(),
+                ],
               ),
             ),
             Container(
