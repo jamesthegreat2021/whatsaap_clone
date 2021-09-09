@@ -1,0 +1,9 @@
+{
+    "helloWorld": "Hello World!",
+	"chat": "Chat",
+	"status": "Status",
+	"calls": "Calls",
+    "@helloWorld": {
+      "description": "The conventional newborn programmer greeting"
+    }
+}
