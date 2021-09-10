@@ -17,6 +17,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Whatsapp',
+      locale: Locale('es', ''),
       theme: ThemeData(primarySwatch: Colors.green),
       home: const MyStatelessWidget(title: 'Whatsapp'),
       localizationsDelegates: AppLocalizations.localizationsDelegates,
@@ -43,7 +44,7 @@ class _MyStatelessWidgetState extends State<MyStatelessWidget>
   void initState() {
     super.initState();
 
-    _tabController = TabController(length: 4, vsync: this)
+    _tabController = TabController(length: 4, vsync: this, initialIndex: 1)
       ..addListener(() {
         setState(
           () {
@@ -56,45 +57,58 @@ class _MyStatelessWidgetState extends State<MyStatelessWidget>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        actions: [
-          IconButton(
-            onPressed: () {},
-            icon: Icon(Icons.search),
-          ),
-          IconButton(
-            onPressed: () {},
-            icon: Icon(Icons.more_vert),
-          ),
-        ],
-        title: Text(widget.title),
-        bottom: TabBar(
-          controller: _tabController,
-          labelPadding: EdgeInsets.zero,
-          tabs: <Widget>[
-            Tab(
-              icon: Icon(Icons.camera_alt),
+      appBar: _tabController.index == 0
+          ? null
+          : AppBar(
+              actions: [
+                IconButton(
+                  onPressed: () {},
+                  icon: Icon(Icons.search),
+                ),
+                IconButton(
+                  onPressed: () {},
+                  icon: Icon(Icons.more_vert),
+                ),
+              ],
+              title: Text(widget.title),
+              bottom: TabBar(
+                isScrollable: true,
+                controller: _tabController,
+                labelPadding: EdgeInsets.zero,
+                tabs: <Widget>[
+                  Container(
+                    width: 50,
+                    child: Icon(Icons.camera),
+                  ),
+                  Container(
+                    width: MediaQuery.of(context).size.width / 3 - 20,
+                    child: Tab(
+                      child: TabContent(
+                          title: AppLocalizations.of(context)!.chat,
+                          withNotification: true,
+                          notificationCount: 13),
+                    ),
+                  ),
+                  Container(
+                    width: MediaQuery.of(context).size.width / 3 - 20,
+                    child: Tab(
+                      child: TabContent(
+                          title: AppLocalizations.of(context)!.status,
+                          withNotification: false),
+                    ),
+                  ),
+                  Container(
+                    width: MediaQuery.of(context).size.width / 3 - 20,
+                    child: Tab(
+                      child: TabContent(
+                          title: AppLocalizations.of(context)!.calls,
+                          withNotification: true,
+                          notificationCount: 14),
+                    ),
+                  ),
+                ],
+              ),
             ),
-            Tab(
-              child: TabContent(
-                  title: AppLocalizations.of(context)!.chat,
-                  withNotification: true,
-                  notificationCount: 13),
-            ),
-            Tab(
-              child: TabContent(
-                  title: AppLocalizations.of(context)!.status,
-                  withNotification: false),
-            ),
-            Tab(
-              child: TabContent(
-                  title: AppLocalizations.of(context)!.calls,
-                  withNotification: true,
-                  notificationCount: 14),
-            ),
-          ],
-        ),
-      ),
       body: TabBarView(
         controller: _tabController,
         children: <Widget>[

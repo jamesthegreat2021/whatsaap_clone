@@ -37,6 +37,9 @@ class ActiveFab extends StatelessWidget {
         );
       default:
     }
-    return SizedBox.shrink();
+    return FloatingActionButton(
+      onPressed: () {},
+      child: Icon(Icons.message),
+    );
   }
 }
