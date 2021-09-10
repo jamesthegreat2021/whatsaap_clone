@@ -3,6 +3,7 @@
 	"chat": "Chat",
 	"status": "Status",
 	"calls": "Calls",
+	"cloudy": "It's cloudy here",
     "@helloWorld": {
       "description": "The conventional newborn programmer greeting"
     }

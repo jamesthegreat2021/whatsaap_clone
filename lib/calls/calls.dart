@@ -16,10 +16,6 @@ class Calls extends StatelessWidget {
           return Call(call: demoCalls[index]);
         },
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {},
-        child: Icon(Icons.call),
-      ),
     );
   }
 }

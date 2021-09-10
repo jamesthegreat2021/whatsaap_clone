@@ -2,5 +2,6 @@
     "helloWorld": "¡Hola Mundo!",
 	"chat": "Chat",
 	"status": "Estado",
-	"calls": "llamadas"
+	"calls": "llamadas",
+	"cloudy": "está nublado aquí"
 }

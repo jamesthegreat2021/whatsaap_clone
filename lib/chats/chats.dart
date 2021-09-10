@@ -16,10 +16,6 @@ class Chats extends StatelessWidget {
           return Chat(chat: demoChats[index]);
         },
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {},
-        child: Icon(Icons.chat),
-      ),
     );
   }
 }

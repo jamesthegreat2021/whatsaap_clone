@@ -25,33 +25,36 @@ class _CounterState extends State<Counter> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: Center(
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Text('you have clicked this many times'),
-              Text(
-                '$_count',
-                style: Theme.of(context).textTheme.headline1,
-              ),
-            ],
-          ),
-        ),
-        floatingActionButton: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            FloatingActionButton(
-              onPressed: _increment,
-              child: Icon(Icons.add),
-            ),
-            SizedBox(
-              height: 5,
-            ),
-            FloatingActionButton(
-              onPressed: _decrement,
-              child: Icon(Icons.remove),
-            ),
-          ],
-        ));
+      body: Center(
+        //   child: Column(
+        //     mainAxisSize: MainAxisSize.min,
+        //     children: [
+        //       Text('you have clicked this many times'),
+        //       Text(
+        //         '$_count',
+        //         style: Theme.of(context).textTheme.headline1,
+        //       ),
+        //     ],
+        //   ),
+        // ),
+        // floatingActionButton: Column(
+        //   mainAxisSize: MainAxisSize.min,
+        //   children: [
+        //     FloatingActionButton(
+        //       onPressed: _increment,
+        //       child: Icon(Icons.add),
+        //     ),
+        //     SizedBox(
+        //       height: 5,
+        //     ),
+        //     FloatingActionButton(
+        //       onPressed: _decrement,
+        //       child: Icon(Icons.remove),
+        //     ),
+        //   ],
+        // ),
+        child: Text('status'),
+      ),
+    );
   }
 }
