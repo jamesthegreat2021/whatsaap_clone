@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:whatsapp_clone/calls/calls.dart';
 import 'package:whatsapp_clone/chats/chats.dart';
 import 'package:whatsapp_clone/counter.dart';
+import 'package:whatsapp_clone/fab.dart';
 import 'package:whatsapp_clone/tab_content.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
@@ -36,7 +37,7 @@ class MyStatelessWidget extends StatefulWidget {
 class _MyStatelessWidgetState extends State<MyStatelessWidget>
     with SingleTickerProviderStateMixin {
   late TabController _tabController;
-  var fabIcon = Icons.message;
+  Widget fab = SizedBox.shrink();
 
   @override
   void initState() {
@@ -44,22 +45,11 @@ class _MyStatelessWidgetState extends State<MyStatelessWidget>
 
     _tabController = TabController(length: 4, vsync: this)
       ..addListener(() {
-        setState(() {
-          switch (_tabController.index) {
-            case 0:
-              break;
-            case 1:
-              fabIcon = Icons.message;
-              break;
-            case 2:
-              fabIcon = Icons.camera_enhance;
-              break;
-            case 3:
-              fabIcon = Icons.call;
-              break;
-            default:
-          }
-        });
+        setState(
+          () {
+            fab = ActiveFab(tindex: _tabController.index);
+          },
+        );
       });
   }
 
@@ -116,13 +106,7 @@ class _MyStatelessWidgetState extends State<MyStatelessWidget>
           Calls(),
         ],
       ),
-      floatingActionButton: _tabController.index == 0
-          ? SizedBox.shrink()
-          : FloatingActionButton(
-              onPressed: () {},
-              child: Icon(fabIcon),
-              backgroundColor: Colors.green,
-            ),
+      floatingActionButton: fab,
     );
   }
 }
