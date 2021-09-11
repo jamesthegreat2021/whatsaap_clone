@@ -34,6 +34,8 @@ dependencies:
   emoji_picker_flutter: ^1.0.7
   
   bubble: ^1.2.1
+  shared_preferences: ^2.0.7
+  custom_radio_grouped_button: ^2.0.0
 
 dev_dependencies:
   flutter_test:
@@ -44,7 +46,7 @@ dev_dependencies:
 
 # The following section is specific to Flutter.
 flutter:
-  generate: true
+  # generate: true
 
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in

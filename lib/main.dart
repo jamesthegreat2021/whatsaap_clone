@@ -1,27 +1,68 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:whatsapp_clone/calls/calls.dart';
 import 'package:whatsapp_clone/chats/chats.dart';
 import 'package:whatsapp_clone/counter.dart';
 import 'package:whatsapp_clone/fab.dart';
+import 'package:whatsapp_clone/constants/locale_prefs.dart';
+import 'package:whatsapp_clone/localizations/languages/app_localizations.dart';
+import 'package:whatsapp_clone/localizations/localization_delegate.dart';
 import 'package:whatsapp_clone/tab_content.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 void main() {
   runApp(const MyApp());
 }
 
 /// This is the main application widget.
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({Key? key}) : super(key: key);
+
+  static setLocale(BuildContext context, Locale locale) {
+    var state = context.findAncestorStateOfType<_MyAppState>();
+    state?.setLocale(locale);
+  }
+
+  @override
+  _MyAppState createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  Locale? _locale;
+
+  setLocale(Locale locale) {
+    setState(() {
+      _locale = locale;
+    });
+  }
+
+  @override
+  void didChangeDependencies() {
+    getLocale().then((Locale locale) {
+      setState(() {
+        _locale = locale;
+      });
+    });
+    super.didChangeDependencies();
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Whatsapp',
       locale: Locale('es', ''),
+      localizationsDelegates: [
+        AppLocalizationsDelegate(),
+        GlobalMaterialLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+      ],
+      supportedLocales: [
+        Locale('en'),
+        Locale('es'),
+      ],
       theme: ThemeData(primarySwatch: Colors.green),
       home: const MyStatelessWidget(title: 'Whatsapp'),
-      localizationsDelegates: AppLocalizations.localizationsDelegates,
-      supportedLocales: AppLocalizations.supportedLocales,
+      // home: const MyStatelessWidget(title: 'Whatsapp'),
     );
   }
 }
@@ -84,7 +125,7 @@ class _MyStatelessWidgetState extends State<MyStatelessWidget>
                     width: MediaQuery.of(context).size.width / 3 - 20,
                     child: Tab(
                       child: TabContent(
-                          title: AppLocalizations.of(context)!.chat,
+                          title: AppLocalizations.of(context)!.labelChats,
                           withNotification: true,
                           notificationCount: 13),
                     ),
@@ -93,7 +134,7 @@ class _MyStatelessWidgetState extends State<MyStatelessWidget>
                     width: MediaQuery.of(context).size.width / 3 - 20,
                     child: Tab(
                       child: TabContent(
-                          title: AppLocalizations.of(context)!.status,
+                          title: AppLocalizations.of(context)!.labelStatus,
                           withNotification: false),
                     ),
                   ),
@@ -101,7 +142,7 @@ class _MyStatelessWidgetState extends State<MyStatelessWidget>
                     width: MediaQuery.of(context).size.width / 3 - 20,
                     child: Tab(
                       child: TabContent(
-                          title: AppLocalizations.of(context)!.calls,
+                          title: AppLocalizations.of(context)!.labelCalls,
                           withNotification: true,
                           notificationCount: 14),
                     ),
@@ -113,7 +154,9 @@ class _MyStatelessWidgetState extends State<MyStatelessWidget>
         controller: _tabController,
         children: <Widget>[
           Center(
-            child: Text(AppLocalizations.of(context)!.cloudy),
+            child: Text(
+              AppLocalizations.of(context)!.labelCloudy,
+            ),
           ),
           Chats(),
           Counter(),

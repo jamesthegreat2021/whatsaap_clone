@@ -57,6 +57,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.0.3"
+  custom_radio_grouped_button:
+    dependency: "direct main"
+    description:
+      name: custom_radio_grouped_button
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.0.0"
   emoji_picker_flutter:
     dependency: "direct main"
     description:
@@ -183,7 +190,7 @@ packages:
     source: hosted
     version: "4.2.3"
   shared_preferences:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: shared_preferences
       url: "https://pub.dartlang.org"
