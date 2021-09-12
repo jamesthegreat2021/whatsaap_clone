@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:whatsapp_clone/calls/calls.dart';
 import 'package:whatsapp_clone/chats/chats.dart';
 import 'package:whatsapp_clone/counter.dart';
 import 'package:whatsapp_clone/fab.dart';
-import 'package:whatsapp_clone/constants/locale_prefs.dart';
-import 'package:whatsapp_clone/localizations/languages/app_localizations.dart';
-import 'package:whatsapp_clone/localizations/localization_delegate.dart';
 import 'package:whatsapp_clone/tab_content.dart';
+import 'package:whatsapp_clone/utils/locale_helpers.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 void main() {
   runApp(const MyApp());
@@ -49,20 +47,11 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Whatsapp',
-      locale: Locale('es', ''),
-      localizationsDelegates: [
-        AppLocalizationsDelegate(),
-        GlobalMaterialLocalizations.delegate,
-        GlobalCupertinoLocalizations.delegate,
-        GlobalWidgetsLocalizations.delegate,
-      ],
-      supportedLocales: [
-        Locale('en'),
-        Locale('es'),
-      ],
+      locale: Locale('en', ''), // to pull from user locale prefs
+      localizationsDelegates: AppLocalizations.localizationsDelegates,
+      supportedLocales: AppLocalizations.supportedLocales,
       theme: ThemeData(primarySwatch: Colors.green),
       home: const MyStatelessWidget(title: 'Whatsapp'),
-      // home: const MyStatelessWidget(title: 'Whatsapp'),
     );
   }
 }

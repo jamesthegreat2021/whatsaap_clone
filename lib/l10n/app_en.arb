@@ -1,0 +1,10 @@
+{
+    "helloWorld": "Hello World!",
+	"@helloWorld": {
+      "description": "The conventional newborn programmer greeting"
+    },
+    "labelChats": "Chats",
+    "labelStatus": "Status",
+    "labelCalls": "Calls",
+    "labelCloudy": "It's cloudy here"
+}
