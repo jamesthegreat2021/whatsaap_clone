@@ -15,6 +15,5 @@ class LocaleProvider extends ChangeNotifier {
   void fetchLocale() async {
     var locale = await getLocale();
     _locale = locale;
-    notifyListeners();
   }
 }

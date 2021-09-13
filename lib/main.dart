@@ -5,7 +5,7 @@ import 'package:whatsapp_clone/chats/chats.dart';
 import 'package:whatsapp_clone/counter.dart';
 import 'package:whatsapp_clone/fab.dart';
 import 'package:whatsapp_clone/locale_provider.dart';
-import 'package:whatsapp_clone/tab_content.dart';
+import 'package:whatsapp_clone/tab.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 void main() {
@@ -37,7 +37,7 @@ class _MyAppState extends State<MyApp> {
       builder: (context, value, child) {
         return MaterialApp(
           title: 'Whatsapp',
-          locale: value.locale, // to pull from user locale prefs
+          locale: value.locale,
           localizationsDelegates: AppLocalizations.localizationsDelegates,
           supportedLocales: AppLocalizations.supportedLocales,
           theme: ThemeData(primarySwatch: Colors.green),
@@ -102,18 +102,18 @@ class _MyStatelessWidgetState extends State<MyStatelessWidget>
                           SimpleDialogOption(
                             child: Text('en'),
                             onPressed: () {
-                              var localeProvider =
-                                  context.read<LocaleProvider>();
-                              localeProvider.changeLanguage('en');
+                              context
+                                  .read<LocaleProvider>()
+                                  .changeLanguage('en');
                               Navigator.pop(context);
                             },
                           ),
                           SimpleDialogOption(
                             child: Text('es'),
                             onPressed: () {
-                              var localeProvider =
-                                  context.read<LocaleProvider>();
-                              localeProvider.changeLanguage('es');
+                              context
+                                  .read<LocaleProvider>()
+                                  .changeLanguage('es');
                               Navigator.pop(context);
                             },
                           ),
@@ -134,31 +134,19 @@ class _MyStatelessWidgetState extends State<MyStatelessWidget>
                     width: 50,
                     child: Icon(Icons.camera),
                   ),
-                  Container(
-                    width: MediaQuery.of(context).size.width / 3 - 20,
-                    child: Tab(
-                      child: TabContent(
-                          title: AppLocalizations.of(context)!.labelChats,
-                          withNotification: true,
-                          notificationCount: 13),
-                    ),
+                  TabContainer(
+                    title: AppLocalizations.of(context)!.labelChats,
+                    withNotifications: true,
+                    notificationCount: 13,
                   ),
-                  Container(
-                    width: MediaQuery.of(context).size.width / 3 - 20,
-                    child: Tab(
-                      child: TabContent(
-                          title: AppLocalizations.of(context)!.labelStatus,
-                          withNotification: false),
-                    ),
+                  TabContainer(
+                    title: AppLocalizations.of(context)!.labelStatus,
+                    withNotifications: false,
                   ),
-                  Container(
-                    width: MediaQuery.of(context).size.width / 3 - 20,
-                    child: Tab(
-                      child: TabContent(
-                          title: AppLocalizations.of(context)!.labelCalls,
-                          withNotification: true,
-                          notificationCount: 14),
-                    ),
+                  TabContainer(
+                    title: AppLocalizations.of(context)!.labelCalls,
+                    withNotifications: true,
+                    notificationCount: 4,
                   ),
                 ],
               ),

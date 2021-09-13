@@ -21,8 +21,9 @@ class TabContent extends StatelessWidget {
         ),
         withNotification
             ? Container(
+                width: 22,
+                height: 22,
                 alignment: Alignment.center,
-                padding: EdgeInsets.all(4),
                 margin: EdgeInsets.only(left: 3),
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
