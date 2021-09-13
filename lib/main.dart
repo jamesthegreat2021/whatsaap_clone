@@ -1,57 +1,49 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:whatsapp_clone/calls/calls.dart';
 import 'package:whatsapp_clone/chats/chats.dart';
 import 'package:whatsapp_clone/counter.dart';
 import 'package:whatsapp_clone/fab.dart';
+import 'package:whatsapp_clone/locale_provider.dart';
 import 'package:whatsapp_clone/tab_content.dart';
-import 'package:whatsapp_clone/utils/locale_helpers.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(
+    ChangeNotifierProvider(
+      create: (context) => LocaleProvider(),
+      child: MyApp(),
+    ),
+  );
 }
 
-/// This is the main application widget.
 class MyApp extends StatefulWidget {
   const MyApp({Key? key}) : super(key: key);
-
-  static setLocale(BuildContext context, Locale locale) {
-    var state = context.findAncestorStateOfType<_MyAppState>();
-    state?.setLocale(locale);
-  }
 
   @override
   _MyAppState createState() => _MyAppState();
 }
 
 class _MyAppState extends State<MyApp> {
-  Locale? _locale;
-
-  setLocale(Locale locale) {
-    setState(() {
-      _locale = locale;
-    });
-  }
-
   @override
-  void didChangeDependencies() {
-    getLocale().then((Locale locale) {
-      setState(() {
-        _locale = locale;
-      });
-    });
-    super.didChangeDependencies();
+  void initState() {
+    super.initState();
+    context.read<LocaleProvider>().fetchLocale();
   }
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Whatsapp',
-      locale: Locale('en', ''), // to pull from user locale prefs
-      localizationsDelegates: AppLocalizations.localizationsDelegates,
-      supportedLocales: AppLocalizations.supportedLocales,
-      theme: ThemeData(primarySwatch: Colors.green),
-      home: const MyStatelessWidget(title: 'Whatsapp'),
+    return Consumer<LocaleProvider>(
+      builder: (context, value, child) {
+        return MaterialApp(
+          title: 'Whatsapp',
+          locale: value.locale, // to pull from user locale prefs
+          localizationsDelegates: AppLocalizations.localizationsDelegates,
+          supportedLocales: AppLocalizations.supportedLocales,
+          theme: ThemeData(primarySwatch: Colors.green),
+          home: const MyStatelessWidget(title: 'Whatsapp'),
+        );
+      },
     );
   }
 }
@@ -86,6 +78,7 @@ class _MyStatelessWidgetState extends State<MyStatelessWidget>
 
   @override
   Widget build(BuildContext context) {
+    var localeProvider = Provider.of<LocaleProvider>(context);
     return Scaffold(
       appBar: _tabController.index == 0
           ? null
@@ -96,7 +89,35 @@ class _MyStatelessWidgetState extends State<MyStatelessWidget>
                   icon: Icon(Icons.search),
                 ),
                 IconButton(
-                  onPressed: () {},
+                  onPressed: () => showDialog(
+                    context: context,
+                    builder: (context) {
+                      return SimpleDialog(
+                        children: [
+                          SimpleDialogOption(
+                            child: Text(
+                              AppLocalizations.of(context)!.labelSelectLanguage,
+                              style: TextStyle(fontSize: 18),
+                            ),
+                          ),
+                          SimpleDialogOption(
+                            child: Text('en'),
+                            onPressed: () {
+                              localeProvider.changeLanguage('en');
+                              Navigator.pop(context);
+                            },
+                          ),
+                          SimpleDialogOption(
+                            child: Text('es'),
+                            onPressed: () {
+                              localeProvider.changeLanguage('es');
+                              Navigator.pop(context);
+                            },
+                          ),
+                        ],
+                      );
+                    },
+                  ),
                   icon: Icon(Icons.more_vert),
                 ),
               ],

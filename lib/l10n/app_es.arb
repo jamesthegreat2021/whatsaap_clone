@@ -3,5 +3,7 @@
     "labelChats": "Chats",
     "labelStatus": "Estado",
     "labelCalls": "Llamadas",
-    "labelCloudy": "está nublado aquí"
+    "labelCloudy": "está nublado aquí",
+    "labelSelectLanguage": "seleccione el idioma"
+
 }

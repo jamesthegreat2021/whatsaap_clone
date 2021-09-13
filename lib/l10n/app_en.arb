@@ -6,5 +6,6 @@
     "labelChats": "Chats",
     "labelStatus": "Status",
     "labelCalls": "Calls",
-    "labelCloudy": "It's cloudy here"
+    "labelCloudy": "It's cloudy here",
+    "labelSelectLanguage": "Select Language"
 }

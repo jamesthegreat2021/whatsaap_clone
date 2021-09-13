@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:whatsapp_clone/main.dart';
 
 const prefSelectedLanguageCode = 'SelectedLanguageCode';
 
@@ -18,9 +17,4 @@ Future<Locale> getLocale() async {
 
 Locale _locale(String languageCode) {
   return languageCode.isNotEmpty ? Locale(languageCode, '') : Locale('en', '');
-}
-
-void changeLanguage(BuildContext context, String selectedLanguageCode) async {
-  var _locale = await setLocale(selectedLanguageCode);
-  MyApp.setLocale(context, _locale);
 }
