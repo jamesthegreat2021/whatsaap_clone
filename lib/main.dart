@@ -78,7 +78,6 @@ class _MyStatelessWidgetState extends State<MyStatelessWidget>
 
   @override
   Widget build(BuildContext context) {
-    var localeProvider = Provider.of<LocaleProvider>(context);
     return Scaffold(
       appBar: _tabController.index == 0
           ? null
@@ -103,6 +102,8 @@ class _MyStatelessWidgetState extends State<MyStatelessWidget>
                           SimpleDialogOption(
                             child: Text('en'),
                             onPressed: () {
+                              var localeProvider =
+                                  context.read<LocaleProvider>();
                               localeProvider.changeLanguage('en');
                               Navigator.pop(context);
                             },
@@ -110,6 +111,8 @@ class _MyStatelessWidgetState extends State<MyStatelessWidget>
                           SimpleDialogOption(
                             child: Text('es'),
                             onPressed: () {
+                              var localeProvider =
+                                  context.read<LocaleProvider>();
                               localeProvider.changeLanguage('es');
                               Navigator.pop(context);
                             },
