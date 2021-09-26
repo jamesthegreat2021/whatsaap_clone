@@ -1,8 +1,8 @@
 import 'dart:io';
 import 'package:emoji_picker_flutter/emoji_picker_flutter.dart';
 import 'package:flutter/material.dart';
-import 'package:grouped_list/grouped_list.dart';
 import 'package:whatsapp_clone/models/chat.dart';
+import 'package:whatsapp_clone/screens/components/message_dash.dart';
 
 class ChatScreen extends StatefulWidget {
   const ChatScreen({Key? key, required this.activeChat}) : super(key: key);
@@ -75,34 +75,7 @@ class _ChatScreenState extends State<ChatScreen> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Expanded(
-              child: GroupedListView<dynamic, String>(
-                elements: widget.activeChat.chatMessages,
-                groupBy: (element) => element.group,
-                groupSeparatorBuilder: (String value) => Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Text(
-                    value,
-                    textAlign: TextAlign.center,
-                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-                  ),
-                ),
-                itemBuilder: (c, element) {
-                  return Card(
-                    elevation: 8.0,
-                    margin:
-                        EdgeInsets.symmetric(horizontal: 10.0, vertical: 6.0),
-                    child: Container(
-                      child: ListTile(
-                        contentPadding: EdgeInsets.symmetric(
-                            horizontal: 20.0, vertical: 10.0),
-                        leading: Icon(Icons.account_circle),
-                        title: Text(element.content),
-                        trailing: Icon(Icons.arrow_forward),
-                      ),
-                    ),
-                  );
-                },
-              ),
+              child: MessageDash(chatMessages: widget.activeChat.chatMessages),
             ),
             Container(
               width: double.infinity,

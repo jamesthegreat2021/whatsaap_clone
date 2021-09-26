@@ -8,10 +8,23 @@ class Chat extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var lastChatMessage = chat.chatMessages.last; // TODO strange behavior here
     return ListTile(
       leading: CircleAvatar(),
       title: Text(chat.title),
-      subtitle: Text(chat.subTitle),
+      subtitle: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Text(lastChatMessage.sender),
+          Text(': '),
+          Expanded(
+            child: Text(
+              lastChatMessage.content,
+              overflow: TextOverflow.ellipsis,
+            ),
+          )
+        ],
+      ),
       trailing: Text(chat.date),
       onTap: () => Navigator.of(context).push(
         MaterialPageRoute(
