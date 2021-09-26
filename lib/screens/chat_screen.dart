@@ -79,7 +79,7 @@ class _ChatScreenState extends State<ChatScreen> {
             ),
             Container(
               width: double.infinity,
-              height: 70,
+              height: 65,
               child: Container(
                 padding: EdgeInsets.symmetric(horizontal: 5),
                 child: Row(

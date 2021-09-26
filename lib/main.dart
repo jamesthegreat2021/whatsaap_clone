@@ -5,6 +5,7 @@ import 'package:whatsapp_clone/chats/chats.dart';
 import 'package:whatsapp_clone/counter.dart';
 import 'package:whatsapp_clone/fab.dart';
 import 'package:whatsapp_clone/locale_provider.dart';
+import 'package:whatsapp_clone/screens/shoot.dart';
 import 'package:whatsapp_clone/tab.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
@@ -154,11 +155,7 @@ class _MyStatelessWidgetState extends State<MyStatelessWidget>
       body: TabBarView(
         controller: _tabController,
         children: <Widget>[
-          Center(
-            child: Text(
-              AppLocalizations.of(context)!.labelCloudy,
-            ),
-          ),
+          Shooter(),
           Chats(),
           Counter(),
           Calls(),
