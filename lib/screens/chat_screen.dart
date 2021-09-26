@@ -78,7 +78,9 @@ class _ChatScreenState extends State<ChatScreen> {
             Expanded(
               child: ListView(
                 children: [
-                  MessageDash(),
+                  MessageDash(
+                    chatMessages: widget.activeChat.chatMessages,
+                  ),
                 ],
               ),
             ),

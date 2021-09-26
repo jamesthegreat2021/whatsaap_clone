@@ -5,15 +5,18 @@ import 'package:whatsapp_clone/screens/components/message_bubble.dart';
 
 // This is not clear enough
 class MessageDash extends StatelessWidget {
-  const MessageDash({Key? key}) : super(key: key);
+  const MessageDash({Key? key, required this.chatMessages}) : super(key: key);
+  final List<ChatMessage?> chatMessages;
 
   @override
   Widget build(BuildContext context) {
-    final messages = demoMessages
-        .map(
-          (e) => MessageBubble(message: e),
-        )
-        .toList();
+    final messages = chatMessages.isNotEmpty
+        ? chatMessages
+            .map(
+              (e) => MessageBubble(message: e!),
+            )
+            .toList()
+        : [];
     return Column(
       children: [
         CategoryTime(timestamp: 'Today'),
